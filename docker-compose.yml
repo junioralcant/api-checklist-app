@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  database_checklist_app:
+    image: postgres
+    container_name: database_checklist_app
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=toor
+      - POSTGRES_DB=checklist_app
+    volumes:
+      - pgdata:/data/postgres
+  app:
+    build: .
+    container_name: checklist_app
+    ports:
+      - 3333:3333
+      - 9229:9229
+    environment:
+      DATABASE_URL: "postgresql://root:toor@database_checklist_app:5432/checklist_app?schema=public"
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules/bcrypt/
+    links:
+      - database_checklist_app
+    depends_on:
+      - database_checklist_app
+      
+volumes:
+  pgdata:
+    driver: local     

@@ -22,8 +22,6 @@ describe('Create company', () => {
       company
     );
 
-    console.log(companyCreated);
-
     expect(companyCreated).toHaveProperty('id');
   });
 });

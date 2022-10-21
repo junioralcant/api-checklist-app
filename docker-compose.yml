@@ -20,7 +20,7 @@ services:
       - 3333:3333
       - 9229:9229
     environment:
-      DATABASE_URL: "postgresql://root:toor@database_checklist_app:5432/checklist_app?schema=public"
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
     volumes:
       - .:/usr/app
       - /usr/app/node_modules/bcrypt/

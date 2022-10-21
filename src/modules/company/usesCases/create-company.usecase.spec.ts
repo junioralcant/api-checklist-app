@@ -37,4 +37,15 @@ describe('Create company', () => {
       await createCompanyUseCase.execute(company);
     }).rejects.toBeInstanceOf(Error);
   });
+
+  it('should not be able create new company without name and cnpj', () => {
+    expect(async () => {
+      const company = {
+        name: 'JJJR',
+        cnpj: '',
+      };
+
+      await createCompanyUseCase.execute(company);
+    }).rejects.toBeInstanceOf(Error);
+  });
 });

@@ -5,6 +5,10 @@ export class CreateCompanyUseCase {
   constructor(private companyRepository: ICompanyRepository) {}
 
   async execute({ name, cnpj }: ICreateCompanyDTO) {
+    if (!name || !cnpj) {
+      throw new Error('Name/CNPJ is required');
+    }
+
     const companyExisting =
       await this.companyRepository.findByCompanyCNPJ(cnpj);
 

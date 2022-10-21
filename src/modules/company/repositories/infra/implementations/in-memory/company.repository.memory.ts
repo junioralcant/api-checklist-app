@@ -12,4 +12,14 @@ export class CompanyRepositoryInMemory implements ICompanyRepository {
 
     return company;
   }
+
+  async findByCompanyCNPJ(
+    cnpj: string
+  ): Promise<Company | undefined> {
+    const company = this.companies.find(
+      (company) => company.cnpj === cnpj
+    );
+
+    return company;
+  }
 }

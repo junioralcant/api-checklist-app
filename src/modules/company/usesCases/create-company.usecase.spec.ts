@@ -12,7 +12,7 @@ describe('Create company', () => {
     );
   });
 
-  it('should be create new company', async () => {
+  it('should be able create new company', async () => {
     const company = {
       name: 'JJJR',
       cnpj: '123',
@@ -23,5 +23,18 @@ describe('Create company', () => {
     );
 
     expect(companyCreated).toHaveProperty('id');
+  });
+
+  it('should not be able create new company with cnpj existing', () => {
+    expect(async () => {
+      const company = {
+        name: 'JJJR',
+        cnpj: '123',
+      };
+
+      await createCompanyUseCase.execute(company);
+
+      await createCompanyUseCase.execute(company);
+    }).rejects.toBeInstanceOf(Error);
   });
 });

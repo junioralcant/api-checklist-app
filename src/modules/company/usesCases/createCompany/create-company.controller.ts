@@ -6,17 +6,21 @@ export class CreateCompanyController {
   constructor(private companyRepositoy: CompanyRepository) {}
 
   async handle(request: Request, response: Response) {
-    const { name, cnpj } = request.body;
+    try {
+      const { name, cnpj } = request.body;
 
-    const createCompanyUseCase = new CreateCompanyUseCase(
-      this.companyRepositoy
-    );
+      const createCompanyUseCase = new CreateCompanyUseCase(
+        this.companyRepositoy
+      );
 
-    const company = await createCompanyUseCase.execute({
-      name,
-      cnpj,
-    });
+      const company = await createCompanyUseCase.execute({
+        name,
+        cnpj,
+      });
 
-    return response.json(company);
+      return response.json(company);
+    } catch (error: any) {
+      return response.status(error.statusCode).json(error.message);
+    }
   }
 }

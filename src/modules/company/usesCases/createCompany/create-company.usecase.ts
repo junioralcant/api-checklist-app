@@ -1,6 +1,6 @@
-import { ICreateCompanyDTO } from '../dtos/icreate-company.dtos';
-import { ICompanyRepository } from '../repositories/icompany.repository';
-import { ParameterRequiredError } from '../../../shared/infra/error/parameter-requered.error';
+import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
+import { ICreateCompanyDTO } from '../../dtos/icreate-company.dtos';
+import { ICompanyRepository } from '../../repositories/icompany.repository';
 
 export class CreateCompanyUseCase {
   constructor(private companyRepository: ICompanyRepository) {}

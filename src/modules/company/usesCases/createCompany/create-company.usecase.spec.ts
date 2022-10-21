@@ -1,4 +1,4 @@
-import { CompanyRepositoryInMemory } from '../repositories/infra/implementations/in-memory/company.repository.memory';
+import { CompanyRepositoryInMemory } from '../../repositories/infra/implementations/in-memory/company.repository.memory';
 import { CreateCompanyUseCase } from './create-company.usecase';
 
 let createCompanyUseCase: CreateCompanyUseCase;

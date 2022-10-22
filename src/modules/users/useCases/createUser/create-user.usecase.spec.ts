@@ -23,4 +23,17 @@ describe('Create user', () => {
 
     expect(userCreated).toHaveProperty('id');
   });
+
+  it('should not be able create new user without name email and password', async () => {
+    expect(async () => {
+      const user = {
+        name: '',
+        email: '',
+        password: '',
+        company_id: randomUUID(),
+      };
+
+      await createUserUseCase.handle(user);
+    }).rejects.toBeInstanceOf(Error);
+  });
 });

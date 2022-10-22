@@ -19,7 +19,7 @@ describe('Create user', () => {
       company_id: randomUUID(),
     };
 
-    const userCreated = await createUserUseCase.handle(user);
+    const userCreated = await createUserUseCase.execute(user);
 
     expect(userCreated).toHaveProperty('id');
   });
@@ -33,8 +33,8 @@ describe('Create user', () => {
         company_id: randomUUID(),
       };
 
-      await createUserUseCase.handle(user);
-      await createUserUseCase.handle(user);
+      await createUserUseCase.execute(user);
+      await createUserUseCase.execute(user);
     }).rejects.toBeInstanceOf(Error);
   });
 
@@ -47,7 +47,7 @@ describe('Create user', () => {
         company_id: randomUUID(),
       };
 
-      await createUserUseCase.handle(user);
+      await createUserUseCase.execute(user);
     }).rejects.toBeInstanceOf(Error);
   });
 });

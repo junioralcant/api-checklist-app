@@ -5,7 +5,7 @@ import { IUserRepository } from '../../repositories/iuser.repository';
 export class CreateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async handle({
+  async execute({
     name,
     email,
     password,

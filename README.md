@@ -9,3 +9,12 @@
   - [x] Não deve ser possível realizar um cadastro de uma empresa com CNPJ já existente
 
 ---
+
+### **Cadastro de usuário**
+
+- [x] Deve ser possível realizar cadastro de um usuário
+
+  - [x] Não deve ser possível o cadastro de um usuário sem nome, email e senha
+  - [x] Não deve ser possível realizar um cadastro de um usuário com email já existente
+
+---

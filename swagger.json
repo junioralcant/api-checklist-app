@@ -10,7 +10,6 @@
         "version": "1.0.0"
     },
     "paths": {
-        "tags": ["Client"],
         "/company": {
             "post": {
                 "description": "Create new company",
@@ -33,6 +32,32 @@
                     }
                 }
             }
+        },
+        "/user": {
+            "post": {
+                "description": "Create new user",
+                "requestBody": {
+                    "description": "Data to create a new user",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registration successful"
+                    },
+                    "409": {
+                        "description": "E-mail already exits"
+                    },
+                    "422": {
+                        "description": "Name/email/password is required."
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -52,6 +77,32 @@
                     }
                 },
                 "required": ["name", "cnpj"]
+            },
+            "RequestUser": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name user",
+                        "example": "Junior Marques"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "E-mail user",
+                        "example": "jrmaques@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password user",
+                        "example": "suasenha"
+                    },
+                    "company_id": {
+                        "type": "string",
+                        "description": "Id company belongs user",
+                        "example": "73a73d63-4c10-4cc8-93db-8c720ea71f75"
+                    }
+                },
+                "required": ["name", "email", "password", "company_id"]
             }
         },
         "securitySchemes": {

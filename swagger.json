@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Checklist Application",
+        "description": "API Checklist Application",
+        "contact": {
+            "name": "Support",
+            "email": "junioralcant1111@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "tags": ["Client"],
+        "/company": {
+            "post": {
+                "description": "Create new company",
+                "requestBody": {
+                    "description": "Data to create a new company",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCompany"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registration successful"
+                    },
+                    "400": {
+                        "description": "CNPJ existing"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RequestCompany": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name company",
+                        "example": "Rocha Engenharia"
+                    },
+                    "cnpj": {
+                        "type": "string",
+                        "description": "CNPJ company",
+                        "example": "00.000.000/0001-00"
+                    }
+                },
+                "required": ["name", "cnpj"]
+            }
+        },
+        "securitySchemes": {
+           "bearerAuth": {
+                "description": "JWT authentication",
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+           }
+        }
+    }
+}

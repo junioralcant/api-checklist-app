@@ -27,3 +27,12 @@
   - [x] Não deve ser possível realizar um cadastro de um admin com email já existente
 
 ---
+
+### **Autenticação**
+
+- [x] Deve ser possível realizar autenticação os usuários admin e usuários não admin
+
+  - [x] Deve ser possível o usuário admin se autenticar na aplicação
+  - [x] Deve ser possível o usuário não admin se autenticar na aplicação
+
+---

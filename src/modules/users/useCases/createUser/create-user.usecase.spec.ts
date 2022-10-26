@@ -25,7 +25,7 @@ describe('Create user', () => {
   });
 
   it('should not be able create new user without name email and password', async () => {
-    expect(async () => {
+    await expect(async () => {
       const user = {
         name: 'John',
         email: 'john@example.com',
@@ -39,7 +39,7 @@ describe('Create user', () => {
   });
 
   it('should not be able create new user with email existing', async () => {
-    expect(async () => {
+    await expect(async () => {
       const user = {
         name: '',
         email: '',

@@ -18,3 +18,12 @@
   - [x] Não deve ser possível realizar um cadastro de um usuário com email já existente
 
 ---
+
+### **Cadastro de usuário admin**
+
+- [x] Deve ser possível realizar cadastro de um admin
+
+  - [x] Não deve ser possível o cadastro de um admin sem nome, email e senha
+  - [x] Não deve ser possível realizar um cadastro de um admin com email já existente
+
+---

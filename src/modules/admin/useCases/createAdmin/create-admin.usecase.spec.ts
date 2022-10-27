@@ -1,4 +1,4 @@
-import { AdminRepositoryInMemory } from '../../repositories/infra/in-memory/admin.repository.memory';
+import { AdminRepositoryInMemory } from '../../repositories/infra/implementations/in-memory/admin.repository.memory';
 import { CreateAdminUseCase } from './create-admin.usecase';
 
 let adminRepositoryInMemory: AdminRepositoryInMemory;

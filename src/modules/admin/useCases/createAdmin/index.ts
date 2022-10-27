@@ -1,4 +1,4 @@
-import { AdminRepository } from '../../repositories/infra/prisma/admin.repository.prisma';
+import { AdminRepository } from '../../repositories/infra/implementations/prisma/admin.repository.prisma';
 import { CreateAdminController } from './create-admin.controller';
 
 const adminRepository = new AdminRepository();

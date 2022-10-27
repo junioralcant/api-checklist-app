@@ -36,3 +36,9 @@
   - [x] Deve ser possível o usuário não admin se autenticar na aplicação
 
 ---
+
+### **Cadastro de imagem**
+
+- [x] Deve ser possível realizar cadastro de um imagem
+
+---

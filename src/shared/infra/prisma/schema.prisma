@@ -40,3 +40,14 @@ model Admin {
 
   @@map("admins")
 }
+
+model Image {
+  id         String   @id @default(uuid())
+  name       String
+  size       Int
+  key        String
+  url        String
+  created_at DateTime @default(now())
+
+  @@map("images")
+}

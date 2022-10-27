@@ -1,5 +1,5 @@
-import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { IPasswordCrypto } from '../../../../shared/infra/crypto/ipassword.crypto';
 import { prismaClient } from '../../../../shared/infra/database/prisma.config';
 import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
 
@@ -9,6 +9,8 @@ interface IAuthenicateUser {
 }
 
 export class AuthenticateUserUsecase {
+  constructor(private passwordCrypto: IPasswordCrypto) {}
+
   async execute({ email, password }: IAuthenicateUser) {
     const user = await prismaClient.user.findFirst({
       where: {
@@ -26,7 +28,10 @@ export class AuthenticateUserUsecase {
       );
     }
 
-    const passwordMatch = await compare(password, user.password);
+    const passwordMatch = await this.passwordCrypto.compare(
+      password,
+      user.password
+    );
 
     if (!passwordMatch) {
       throw new ParameterRequiredError(

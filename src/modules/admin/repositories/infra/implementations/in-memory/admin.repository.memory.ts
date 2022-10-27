@@ -1,6 +1,6 @@
-import { ICreateAdminDTO } from '../../../dtos/icreate-admin.dtos';
-import { Admin } from '../../../entities/admin.entity';
-import { IAdminRepository } from '../../iadmin.repository';
+import { ICreateAdminDTO } from '../../../../dtos/icreate-admin.dtos';
+import { Admin } from '../../../../entities/admin.entity';
+import { IAdminRepository } from '../../../iadmin.repository';
 
 export class AdminRepositoryInMemory implements IAdminRepository {
   admins: Admin[] = [];

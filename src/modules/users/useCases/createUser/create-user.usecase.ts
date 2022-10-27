@@ -1,10 +1,13 @@
-import { hash } from 'bcryptjs';
+import { IPasswordCrypto } from '../../../../shared/infra/crypto/ipassword.crypto';
 import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
 import { ICreateUserDTO } from '../../dtos/icreate-user.dtos';
 import { IUserRepository } from '../../repositories/iuser.repository';
 
 export class CreateUserUseCase {
-  constructor(private userRepository: IUserRepository) {}
+  constructor(
+    private userRepository: IUserRepository,
+    private passwordCrypto: IPasswordCrypto
+  ) {}
 
   async execute({
     name,
@@ -28,7 +31,7 @@ export class CreateUserUseCase {
       throw new ParameterRequiredError('E-mail already exits.', 409);
     }
 
-    const hashPassword = await hash(password, 10);
+    const hashPassword = await this.passwordCrypto.hash(password);
 
     const user = await this.userRepository.create({
       name,

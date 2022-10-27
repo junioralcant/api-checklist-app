@@ -1,14 +1,20 @@
 import { randomUUID } from 'crypto';
 import { CreateUserUseCase } from './create-user.usecase';
 import { UserRepositoryInMemory } from '../../repositories/infra/implementations/in-memory/user.repository.memory';
+import { PasswordBcrypt } from '../../../../shared/infra/crypto/password.bcrypt';
 
 let createUserUseCase: CreateUserUseCase;
+let passwordBcrypt: PasswordBcrypt;
 let userRepositoryInMemory: UserRepositoryInMemory;
 
 describe('Create user', () => {
   beforeEach(() => {
     userRepositoryInMemory = new UserRepositoryInMemory();
-    createUserUseCase = new CreateUserUseCase(userRepositoryInMemory);
+    passwordBcrypt = new PasswordBcrypt();
+    createUserUseCase = new CreateUserUseCase(
+      userRepositoryInMemory,
+      passwordBcrypt
+    );
   });
 
   it('should be able create new user', async () => {

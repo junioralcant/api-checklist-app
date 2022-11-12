@@ -19,14 +19,15 @@ model Company {
 }
 
 model User {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   name       String
-  email      String   @unique
+  email      String      @unique
   password   String
-  isAdmin    Boolean  @default(false)
+  isAdmin    Boolean     @default(false)
   company_id String
-  company    Company  @relation(fields: [company_id], references: [id])
-  created_at DateTime @default(now())
+  company    Company     @relation(fields: [company_id], references: [id])
+  created_at DateTime    @default(now())
+  Checklist  Checklist[]
 
   @@map("users")
 }
@@ -50,4 +51,13 @@ model Image {
   created_at DateTime @default(now())
 
   @@map("images")
+}
+
+model Checklist {
+  id      String @id @default(uuid())
+  name    String
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  @@map("checklists")
 }

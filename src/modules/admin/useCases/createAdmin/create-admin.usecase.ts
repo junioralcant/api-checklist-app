@@ -1,4 +1,5 @@
 import { hash } from 'bcryptjs';
+import { CustomError } from '../../../../shared/infra/error/custom.error';
 import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
 import { ICreateAdminDTO } from '../../dtos/icreate-admin.dtos';
 import { IAdminRepository } from '../../repositories/iadmin.repository';
@@ -16,7 +17,11 @@ export class CreateAdminUseCase {
     );
 
     if (adminExists) {
-      throw new ParameterRequiredError('Email existing', 409);
+      throw new CustomError(
+        'User already exists',
+        400,
+        'USER_EXISTS_ERROR'
+      );
     }
 
     const hashPassword = await hash(password, 10);

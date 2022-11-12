@@ -1,7 +1,7 @@
 import { sign } from 'jsonwebtoken';
 import { IPasswordCrypto } from '../../../../shared/infra/crypto/ipassword.crypto';
 import { prismaClient } from '../../../../shared/infra/database/prisma.config';
-import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
+import { CustomError } from '../../../../shared/infra/error/custom.error';
 
 interface IAuthenicateUser {
   email: string;
@@ -22,10 +22,7 @@ export class AuthenticateUserUsecase {
     });
 
     if (!user) {
-      throw new ParameterRequiredError(
-        'E-mail or password invalid!',
-        401
-      );
+      throw new CustomError('E-mail or password invalid!', 401);
     }
 
     const passwordMatch = await this.passwordCrypto.compare(
@@ -34,10 +31,7 @@ export class AuthenticateUserUsecase {
     );
 
     if (!passwordMatch) {
-      throw new ParameterRequiredError(
-        'E-mail or password invalid!',
-        401
-      );
+      throw new CustomError('E-mail or password invalid!', 401);
     }
 
     const userId = user.id;

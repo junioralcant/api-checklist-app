@@ -1,4 +1,5 @@
 import { IPasswordCrypto } from '../../../../shared/infra/crypto/ipassword.crypto';
+import { CustomError } from '../../../../shared/infra/error/custom.error';
 import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
 import { ICreateUserDTO } from '../../dtos/icreate-user.dtos';
 import { IUserRepository } from '../../repositories/iuser.repository';
@@ -28,7 +29,11 @@ export class CreateUserUseCase {
     );
 
     if (userExits) {
-      throw new ParameterRequiredError('E-mail already exits.', 409);
+      throw new CustomError(
+        'User already exists',
+        400,
+        'USER_EXISTS_ERROR'
+      );
     }
 
     const hashPassword = await this.passwordCrypto.hash(password);

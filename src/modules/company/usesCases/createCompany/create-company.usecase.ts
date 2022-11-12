@@ -1,3 +1,4 @@
+import { CustomError } from '../../../../shared/infra/error/custom.error';
 import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
 import { ICreateCompanyDTO } from '../../dtos/icreate-company.dtos';
 import { ICompanyRepository } from '../../repositories/icompany.repository';
@@ -14,7 +15,11 @@ export class CreateCompanyUseCase {
       await this.companyRepository.findByCompanyCNPJ(cnpj);
 
     if (companyExisting) {
-      throw new ParameterRequiredError('CNPJ existing.', 409);
+      throw new CustomError(
+        'Company already exists',
+        400,
+        'USER_EXISTS_ERROR'
+      );
     }
 
     const company = await this.companyRepository.create({

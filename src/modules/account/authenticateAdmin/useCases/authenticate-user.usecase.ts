@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { prismaClient } from '../../../../shared/infra/database/prisma.config';
-import { ParameterRequiredError } from '../../../../shared/infra/error/parameter-requered.error';
+import { CustomError } from '../../../../shared/infra/error/custom.error';
 
 interface IAuthenticateAdmin {
   email: string;
@@ -20,19 +20,13 @@ export class AuthenticateAdminUseCase {
     });
 
     if (!admin) {
-      throw new ParameterRequiredError(
-        'E-mail or password invalid!',
-        401
-      );
+      throw new CustomError('E-mail or password invalid!', 401);
     }
 
     const passwordMatch = await compare(password, admin.password);
 
     if (!passwordMatch) {
-      throw new ParameterRequiredError(
-        'E-mail or password invalid!',
-        401
-      );
+      throw new CustomError('E-mail or password invalid!', 401);
     }
 
     const adminId = admin.id;

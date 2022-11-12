@@ -42,3 +42,9 @@
 - [x] Deve ser possível realizar cadastro de um imagem
 
 ---
+
+### **Cadastro de checklist**
+
+- [x] Deve ser criar um novo checklist
+
+---
